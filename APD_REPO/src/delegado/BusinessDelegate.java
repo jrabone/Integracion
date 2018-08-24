@@ -29,6 +29,8 @@ public class BusinessDelegate {
 		}
 	}
 	
+		
+		
 	// Ambos
 	public VendedorDTO loginUsuario(String email,String password) throws RemoteException, ComunicationException{
 		return ir.loginUsuario(email, password);

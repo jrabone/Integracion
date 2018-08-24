@@ -10,9 +10,24 @@ import interfaces.RemoteInterface;
 
 public class RemoteObject extends UnicastRemoteObject implements RemoteInterface{
 	
-	private static final long serialVersionUID = -421644367989846198L;	
+	private static RemoteObject instancia;
+	private static final long serialVersionUID = 1L;
 
-	public RemoteObject() throws RemoteException,  RemoteException {}
+	private RemoteObject() throws RemoteException {
+		super();
+	}
+
+	public static RemoteObject getInstance() {
+		if (instancia == null)
+		{
+			try {
+				instancia = new RemoteObject();
+			} catch (RemoteException e) {
+				e.printStackTrace();
+			}
+		}
+	return instancia;
+	}
 
 	public VendedorDTO loginUsuario(String email, String password) throws RemoteException, ComunicationException {
 		return ModuloVentas.getInstance().login(email, password);

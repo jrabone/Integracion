@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sistema de ventas</title>
+    <title>iaPOS!</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://localhost:8180/APD_CTE_WEB/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
