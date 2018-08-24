@@ -9,15 +9,15 @@ import java.util.Random;
 
 import javax.naming.CommunicationException;
 
-import controller.Controller;
+import controller.ModuloVentas;
 
 public class StartUp {
 
 	Random r;
-	Controller c;
+	ModuloVentas c;
 	
 	public StartUp(){
 		r= new Random();
-		c= Controller.getInstance();
+		c= ModuloVentas.getInstance();
 	}
 }
