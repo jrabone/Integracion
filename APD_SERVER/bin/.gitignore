@@ -1,10 +1,8 @@
 /controller/
-/dao/
 /entities/
 /hbt/
 /hibernate.properties
-/model/
 /remote/
 /server/
-/test/
-/testTest/
+/dao/
+/negocio/
