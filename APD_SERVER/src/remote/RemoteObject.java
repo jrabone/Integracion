@@ -2,8 +2,10 @@ package remote;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.List;
 
 import controller.ModuloVentas;
+import dto.ArticuloDTO;
 import dto.VendedorDTO;
 import exception.ComunicationException;
 import interfaces.RemoteInterface;
@@ -31,5 +33,9 @@ public class RemoteObject extends UnicastRemoteObject implements RemoteInterface
 
 	public VendedorDTO loginUsuario(String email, String password) throws RemoteException, ComunicationException {
 		return ModuloVentas.getInstance().login(email, password);
+	}
+	
+	public List<ArticuloDTO> listarArticulos() throws RemoteException, ComunicationException{
+		return ModuloVentas.getInstance().listarArticulos();
 	}
 }

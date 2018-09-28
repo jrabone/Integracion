@@ -2,7 +2,9 @@ package delegado;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
+import java.util.List;
 
+import dto.ArticuloDTO;
 import dto.VendedorDTO;
 import exception.ComunicationException;
 import interfaces.RemoteInterface;
@@ -34,6 +36,10 @@ public class BusinessDelegate {
 	// Ambos
 	public VendedorDTO loginUsuario(String email,String password) throws RemoteException, ComunicationException{
 		return ir.loginUsuario(email, password);
+	}
+	
+	public List<ArticuloDTO> listarArticulos() throws RemoteException, ComunicationException{
+		return ir.listarArticulos();
 	}
 
 	

@@ -1,5 +1,7 @@
 package servlets;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import delegado.BusinessDelegate;
+import dto.ArticuloDTO;
 import dto.VendedorDTO;
 
 
@@ -33,7 +36,12 @@ public class ServletModuloVentas extends HttpServlet{
 					if(usuario != null) {
 						request.setAttribute("error", "Login OK!!!");
 						
-						dispatcher=request.getRequestDispatcher("/login.jsp");
+						List<ArticuloDTO> articulos = BusinessDelegate.getInstancia().listarArticulos();
+						request.setAttribute("articulos", articulos);
+						List<ArticuloDTO> carrito = new ArrayList<ArticuloDTO>();
+						session.setAttribute("carrito", carrito);
+						session.setAttribute("vendedor", usuario);
+						dispatcher=request.getRequestDispatcher("/main.jsp");
 						dispatcher.forward(request, response);	
 					}else {
 						
@@ -45,6 +53,66 @@ public class ServletModuloVentas extends HttpServlet{
 					}
 				}catch (Exception e) {
 					e.printStackTrace();
+				}
+			}else {
+				if(request.getParameter("action").equalsIgnoreCase("cerrarSesion")) {
+					RequestDispatcher dispatcher;
+					session.removeAttribute("vendedor");
+					session.removeAttribute("carrito");
+					dispatcher=request.getRequestDispatcher("/login.jsp");
+		    		dispatcher.forward(request, response);
+				}else {
+					if(request.getParameter("action").equalsIgnoreCase("agregarArticuloCarrito")) {
+						RequestDispatcher dispatcher;
+						try {
+						List<ArticuloDTO> articulos = BusinessDelegate.getInstancia().listarArticulos();
+						request.setAttribute("articulos", articulos);
+						List<ArticuloDTO> carrito = (List<ArticuloDTO>)session.getAttribute("carrito");
+						ArticuloDTO articulo = new ArticuloDTO();
+						articulo.setIdArticulo((String)request.getParameter("idArticulo"));
+					
+						carrito.add(articulo);
+						session.setAttribute("carrito", carrito);
+						
+						dispatcher=request.getRequestDispatcher("/main.jsp");
+						dispatcher.forward(request, response);	
+						
+						}catch (Exception e) {
+							e.printStackTrace();
+							
+						}
+					}else {
+						if(request.getParameter("action").equalsIgnoreCase("verCarrito")) {
+							RequestDispatcher dispatcher;
+							try {
+								dispatcher=request.getRequestDispatcher("/verCarrito.jsp");
+								dispatcher.forward(request, response);	
+								
+							}catch (Exception e) {
+								e.printStackTrace();
+								
+							}
+							
+						}else {
+							if(request.getParameter("action").equalsIgnoreCase("vaciarCarrito")) {
+								RequestDispatcher dispatcher;
+								try {
+									
+									session.removeAttribute("carrito");
+									List<ArticuloDTO> articulos = BusinessDelegate.getInstancia().listarArticulos();
+									request.setAttribute("articulos", articulos);
+									List<ArticuloDTO> carrito = new ArrayList<ArticuloDTO>();
+									session.setAttribute("carrito", carrito);
+									dispatcher=request.getRequestDispatcher("/main.jsp");
+									dispatcher.forward(request, response);	
+									
+								}catch (Exception e) {
+									e.printStackTrace();
+									
+								}
+							}
+						}
+					}
 				}
 			}
 		}

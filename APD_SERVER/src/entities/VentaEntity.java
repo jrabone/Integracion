@@ -1,19 +1,28 @@
 package entities;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="VENTA")
-public class VentaEntity {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_pago", discriminatorType = DiscriminatorType.STRING)
+public abstract class VentaEntity implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="idVenta")
@@ -29,6 +38,10 @@ public class VentaEntity {
 	@ManyToOne
 	@JoinColumn (name="idCliente")
 	protected ClienteEntity idCliente;
+	
+	@OneToMany
+	@JoinColumn(name= "idVenta")
+	private List<ItemVentaEntity> items;  
 	
 	public VentaEntity() {}
 
@@ -89,8 +102,13 @@ public class VentaEntity {
 	public void setEntregaInmediata(Boolean entregaInmediata) {
 		this.entregaInmediata = entregaInmediata;
 	}
-	
-	
-	
+
+	public List<ItemVentaEntity> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemVentaEntity> items) {
+		this.items = items;
+	}
 	
 }

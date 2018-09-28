@@ -1,20 +1,22 @@
-package negocio;
+package entities;
 
-import java.sql.Blob;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Articulo {
+@Entity
+@Table(name="ARTICULO")
+public class ArticuloEntity {
+	@Id
+	@Column(name = "idArticulo")
 	private String idArticulo;
+	@Column(name = "descripcion")
 	private String descripcion;
+	@Column(name = "precioUnitario")
 	private double precioUnitario;
+	@Column(name = "foto")
 	private String foto;
-	
-	public Articulo(String idArticulo, String descripcion, double precioUnitario, String foto) {
-		this.idArticulo = idArticulo;
-		this.descripcion = descripcion;
-		this.precioUnitario = precioUnitario;
-		this.foto = foto;
-	}
-	
 	public String getIdArticulo() {
 		return idArticulo;
 	}
@@ -33,14 +35,10 @@ public class Articulo {
 	public void setPrecioUnitario(double precioUnitario) {
 		this.precioUnitario = precioUnitario;
 	}
-
 	public String getFoto() {
 		return foto;
 	}
-
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	
-	
 }

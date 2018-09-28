@@ -11,7 +11,7 @@
     <title>iaPOS!</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/APD_CTE_WEB/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://localhost:8180/APD_CTE_WEB/vendor2/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <style>
@@ -57,12 +57,12 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/APD_CTE_WEB/logochico.png" 
-     srcset = "/APD_CTE_WEB/logochico.png 2x, 
-             /APD_CTE_WEB/logochico.png 768w, 
-             /APD_CTE_WEB/logochico.png 768w 2x, 
-             /APD_CTE_WEB/logochico.png 1200w, 
-             /APD_CTE_WEB/logochico.png 1200w 2x" /></a>
+        <a class="navbar-brand" href="#"><img src="http://localhost:8180/APD_CTE_WEB/logochico.png" 
+     srcset = "http://localhost:8180/APD_CTE_WEB/logochico.png 2x, 
+             http://localhost:8180/APD_CTE_WEB/logochico.png 768w, 
+             http://localhost:8180/APD_CTE_WEB/logochico.png 768w 2x, 
+             http://localhost:8180/APD_CTE_WEB/logochico.png 1200w, 
+             http://localhost:8180/APD_CTE_WEB/logochico.png 1200w 2x" /></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -88,7 +88,7 @@
           <h1 class="mt-5">Acceso vendedores</h1>
           <p class="lead">Ingresa tus datos de registro para acceder al portal</p>
           <ul class="list-unstyled">
-          <form action="/APD_CTE_WEB/servlets/ServletModuloVentas" method="post" id="loginUsuarios">
+          <form action="http://localhost:8180/APD_CTE_WEB/servlets/ServletModuloVentas" method="post" id="loginUsuarios">
             <table class="table table-bordered" cellspacing="0" witdh=50%>
             
             <tr>
@@ -127,8 +127,8 @@
 
  
     <!-- Bootstrap core JavaScript -->
-    <script src="/APD_CTE_WEB/vendor/jquery/jquery.min.js"></script>
-    <script src="/APD_CTE_WEB/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="http://localhost:8180/APD_CTE_WEB/vendor/jquery/jquery.min.js"></script>
+    <script src="http://localhost:8180/APD_CTE_WEB/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
 
