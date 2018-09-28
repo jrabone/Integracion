@@ -15,10 +15,10 @@
     <title>iaPOS!</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="http://localhost:8180/APD_CTE_WEB/vendor2/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/APD_CTE_WEB/vendor2/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="http://localhost:8180/APD_CTE_WEB/css/3-col-portfolio.css" rel="stylesheet">
+    <link href="/APD_CTE_WEB/css/3-col-portfolio.css" rel="stylesheet">
 
   </head>
 
@@ -27,12 +27,12 @@
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="http://localhost:8180/APD_CTE_WEB/logochico.png" 
-     srcset = "http://localhost:8180/APD_CTE_WEB/logochico.png 2x, 
-             http://localhost:8180/APD_CTE_WEB/logochico.png 768w, 
-             http://localhost:8180/APD_CTE_WEB/logochico.png 768w 2x, 
-             http://localhost:8180/APD_CTE_WEB/logochico.png 1200w, 
-             http://localhost:8180/APD_CTE_WEB/logochico.png 1200w 2x" /></a>
+        <a class="navbar-brand" href="#"><img src="/APD_CTE_WEB/logochico.png" 
+     srcset = "/APD_CTE_WEB/logochico.png 2x, 
+             /APD_CTE_WEB/logochico.png 768w, 
+             /APD_CTE_WEB/logochico.png 768w 2x, 
+             /APD_CTE_WEB/logochico.png 1200w, 
+             /APD_CTE_WEB/logochico.png 1200w 2x" /></a>
         <h1 class="my-41">
          <% VendedorDTO vendedor= (VendedorDTO)session.getAttribute("vendedor");%>
          <% List<ArticuloDTO> carrito= (List<ArticuloDTO>)session.getAttribute("carrito");%>
@@ -75,7 +75,10 @@
               <h4 class="card-title">
                 <a href="ServletModuloVentas?action=agregarArticuloCarrito&idArticulo=<%=articulo.getIdArticulo()%>">Cartuchera</a>
               </h4>
-              <p class="card-text">   <%=articulo.getDescripcion() %> <h4 class="card-title">$<%=articulo.getPrecioUnitario() %></h4></p>
+              <p class="card-text">   <%=articulo.getDescripcion() %> 
+              	<h4 class="card-title">$<%=articulo.getPrecioUnitario() %></h4>
+              	<h4 class="card-title">Stock: <%=articulo.getStock() %> </h4> 
+              </p>         
             </div>
           </div>
         </div>
@@ -120,8 +123,8 @@
     </footer>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="http://localhost:8180/APD_CTE_WEB/vendor/jquery/jquery.min.js"></script>
-    <script src="http://localhost:8180/APD_CTE_WEB/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/APD_CTE_WEB/vendor/jquery/jquery.min.js"></script>
+    <script src="/APD_CTE_WEB/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   </body>
 

@@ -7,12 +7,24 @@ public class Articulo {
 	private String descripcion;
 	private double precioUnitario;
 	private String foto;
+
+
+	private int stock;
 	
-	public Articulo(String idArticulo, String descripcion, double precioUnitario, String foto) {
+	public Articulo(String idArticulo, String descripcion, double precioUnitario, String foto, int stock) {
 		this.idArticulo = idArticulo;
 		this.descripcion = descripcion;
 		this.precioUnitario = precioUnitario;
 		this.foto = foto;
+		this.stock = stock;
+	}
+	
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 	
 	public String getIdArticulo() {

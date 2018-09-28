@@ -17,6 +17,26 @@ public class ArticuloEntity {
 	private double precioUnitario;
 	@Column(name = "foto")
 	private String foto;
+	@Column(name = "stock")
+	private int stock;
+	
+	public ArticuloEntity() {
+	}
+	
+	public ArticuloEntity(String descripcion, double precioUnitario, String foto) {
+		super();
+		this.descripcion = descripcion;
+		this.precioUnitario = precioUnitario;
+		this.stock = stock;
+		this.foto = foto;
+	}
+	
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 	public String getIdArticulo() {
 		return idArticulo;
 	}

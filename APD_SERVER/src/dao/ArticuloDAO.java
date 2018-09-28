@@ -47,6 +47,7 @@ public class ArticuloDAO {
 		articuloDTO.setFoto(articulo.getFoto());
 		articuloDTO.setIdArticulo(articulo.getIdArticulo());
 		articuloDTO.setPrecioUnitario(articulo.getPrecioUnitario());
+		articuloDTO.setStock(articulo.getStock());
 		return articuloDTO;
 	}
 }
