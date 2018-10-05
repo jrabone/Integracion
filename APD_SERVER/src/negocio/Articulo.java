@@ -2,8 +2,10 @@ package negocio;
 
 import java.sql.Blob;
 
+import dao.ArticuloDAO;
+
 public class Articulo {
-	private String idArticulo;
+	private Integer idArticulo;
 	private String descripcion;
 	private double precioUnitario;
 	private String foto;
@@ -11,12 +13,17 @@ public class Articulo {
 
 	private int stock;
 	
-	public Articulo(String idArticulo, String descripcion, double precioUnitario, String foto, int stock) {
+	public Articulo(Integer idArticulo, String descripcion, double precioUnitario, String foto, int stock) {
 		this.idArticulo = idArticulo;
 		this.descripcion = descripcion;
 		this.precioUnitario = precioUnitario;
 		this.foto = foto;
 		this.stock = stock;
+	}
+	
+	public Integer guardar() {
+		this.idArticulo = ArticuloDAO.getInstancia().grabar(this);
+		return this.idArticulo;
 	}
 	
 	public int getStock() {
@@ -27,10 +34,10 @@ public class Articulo {
 		this.stock = stock;
 	}
 	
-	public String getIdArticulo() {
+	public Integer getIdArticulo() {
 		return idArticulo;
 	}
-	public void setIdArticulo(String idArticulo) {
+	public void setIdArticulo(Integer idArticulo) {
 		this.idArticulo = idArticulo;
 	}
 	public String getDescripcion() {

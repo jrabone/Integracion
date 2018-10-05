@@ -10,6 +10,7 @@ import org.hibernate.SessionFactory;
 import dto.ArticuloDTO;
 import entities.ArticuloEntity;
 import hbt.HibernateUtil;
+import negocio.Articulo;
 
 public class ArticuloDAO {
 	private static ArticuloDAO instancia;
@@ -39,6 +40,17 @@ public class ArticuloDAO {
 		}
 		
 		return articulosDTO;
+	}
+	
+	public Integer grabar(Articulo articulo){
+		ArticuloEntity ae = new ArticuloEntity(articulo);
+		SessionFactory sf = HibernateUtil.getSessionFactory();
+		Session session = sf.openSession();
+		session.beginTransaction();
+		session.saveOrUpdate(ae);
+		session.getTransaction().commit();
+		session.close();
+		return ae.toNegocio().getIdArticulo();
 	}
 	
 	public ArticuloDTO toDTO(ArticuloEntity articulo) {

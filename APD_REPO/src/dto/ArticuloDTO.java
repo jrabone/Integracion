@@ -3,7 +3,7 @@ package dto;
 import java.io.Serializable;
 
 public class ArticuloDTO implements Serializable {
-	private String idArticulo;
+	private Integer idArticulo;
 	private String descripcion;
 	private double precioUnitario;
 	private String foto;
@@ -11,11 +11,11 @@ public class ArticuloDTO implements Serializable {
 	
 	public ArticuloDTO() {}
 
-	public String getIdArticulo() {
+	public Integer getIdArticulo() {
 		return idArticulo;
 	}
 
-	public void setIdArticulo(String idArticulo) {
+	public void setIdArticulo(Integer idArticulo) {
 		this.idArticulo = idArticulo;
 	}
 
@@ -51,7 +51,7 @@ public class ArticuloDTO implements Serializable {
 		this.stock = stock;
 	}
 
-	public ArticuloDTO(String idArticulo, String descripcion, double precioUnitario, String foto, int stock) {
+	public ArticuloDTO(Integer idArticulo, String descripcion, double precioUnitario, String foto, int stock) {
 		super();
 		this.idArticulo = idArticulo;
 		this.descripcion = descripcion;

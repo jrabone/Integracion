@@ -93,9 +93,9 @@
 						cant += 1;
 				%>
               <tr>
-                  <td><%=articulo.getIdArticulo() %></td>
+                  <td><%=articulo.getIdArticulo().toString() %></td>
                   <td><%=articulo.getDescripcion() %></td>
-                  <td><%=articulo.getDescripcion() %></td>
+                  <td><%=articulo.getPrecioUnitario() %></td>
                   <td>1</td>
                   <td><table class="table table-bordered">
 				  

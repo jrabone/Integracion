@@ -8,6 +8,7 @@ import dao.VendedorDAO;
 import dto.ArticuloDTO;
 import dto.VendedorDTO;
 import exception.ComunicationException;
+import negocio.Articulo;
 
 public class ModuloVentas {
 
@@ -45,7 +46,9 @@ public class ModuloVentas {
 		return articulosDTO;
 	}
 	
-	
+	public void agregarArticulo(Articulo a) {
+		ArticuloDAO.getInstancia().grabar(a);
+	}
 
 	
 	// Listar articulos

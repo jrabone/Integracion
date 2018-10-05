@@ -18,6 +18,7 @@ public class Server extends Thread {
 	// Constructor del servidor
 	public Server() {
 		iniciar();
+		startUp();
 	}
 
 	// Main del servidor
@@ -40,6 +41,10 @@ public class Server extends Thread {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private static void startUp() {
+		StartUp sup= new StartUp();
 	}
 }
 
