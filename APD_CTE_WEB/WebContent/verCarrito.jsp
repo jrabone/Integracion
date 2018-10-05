@@ -100,7 +100,7 @@
                   <td><table class="table table-bordered">
 				  
 				  <th>
-              <a class="nav-link" href="ServletModuloVentas?action=verCarrito">Eliminar
+              <a class="nav-link" href="ServletModuloVentas?action=eliminarDelCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>">Eliminar
               </a>
             </th>
 				  </th></table></td>

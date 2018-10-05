@@ -112,6 +112,25 @@ public class ServletModuloVentas extends HttpServlet{
 									
 								}
 							}
+							else {
+								if(request.getParameter("action").equalsIgnoreCase("eliminarDelCarrito")) {
+									RequestDispatcher dispatcher;
+									List<ArticuloDTO> carrito = (List<ArticuloDTO>)session.getAttribute("carrito");
+									ArticuloDTO artAEliminar = null;
+									int idArticulo = Integer.parseInt(request.getParameter("idArticulo"));
+									for (ArticuloDTO art : carrito) {
+										if (art.getIdArticulo().equals(idArticulo)) {
+											artAEliminar = art;
+										}
+									}
+
+									carrito.remove(artAEliminar);
+									session.setAttribute("carrito", carrito);
+									
+									dispatcher=request.getRequestDispatcher("/verCarrito.jsp");
+									dispatcher.forward(request, response);
+								}
+							}
 						}
 					}
 				}
