@@ -95,7 +95,7 @@
               <tr>
                   <td><%=articulo.getIdArticulo().toString() %></td>
                   <td><%=articulo.getDescripcion() %></td>
-                  <td><%=articulo.getPrecioUnitario() %></td>
+                  <td><%=String.valueOf(articulo.getPrecioUnitario()) %></td>
                   <td>1</td>
                   <td><table class="table table-bordered">
 				  

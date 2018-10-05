@@ -28,7 +28,7 @@ public class ArticuloEntity {
 	public ArticuloEntity() {
 	}
 	
-	public ArticuloEntity(String descripcion, double precioUnitario, String foto) {
+	public ArticuloEntity(String descripcion, double precioUnitario, String foto, Integer stock) {
 		super();
 		this.descripcion = descripcion;
 		this.precioUnitario = precioUnitario;

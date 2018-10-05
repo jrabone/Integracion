@@ -73,7 +73,7 @@
             <a href="#"><img class="card-img-top" src="<%=articulo.getFoto() %>" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="ServletModuloVentas?action=agregarArticuloCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>">Agregar</a>
+                <a href="ServletModuloVentas?action=agregarArticuloCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>&descripcionArticulo=<%=articulo.getDescripcion()%>&precioArticulo=<%=String.valueOf(articulo.getPrecioUnitario())%>">Agregar</a>
               </h4>
               <p class="card-text">   <%=articulo.getDescripcion() %> 
               	<h4 class="card-title">$<%=articulo.getPrecioUnitario() %></h4>

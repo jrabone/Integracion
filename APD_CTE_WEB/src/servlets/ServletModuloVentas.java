@@ -70,7 +70,8 @@ public class ServletModuloVentas extends HttpServlet{
 						List<ArticuloDTO> carrito = (List<ArticuloDTO>)session.getAttribute("carrito");
 						ArticuloDTO articulo = new ArticuloDTO();
 						articulo.setIdArticulo(Integer.parseInt(request.getParameter("idArticulo")));
-					
+						articulo.setDescripcion(request.getParameter("descripcionArticulo"));
+						articulo.setPrecioUnitario(Double.parseDouble(request.getParameter("precioArticulo")));
 						carrito.add(articulo);
 						session.setAttribute("carrito", carrito);
 						
