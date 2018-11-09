@@ -1,3 +1,23 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.mercadopago.MP"%> 
+<%@page import="org.codehaus.jettison.json.JSONObject"%>
+
+<%
+	MP mp = new MP("6103576789455888", "J3MAUDGrW9MB5FLIS20Xos44uQycaO7f");
+
+	String preferenceData = "{'items':"+
+		"[{"+
+			"'title':'Multicolor kite',"+
+			"'quantity':1,"+
+			"'currency_id':'ARS',"+ // Available currencies at: https://api.mercadopago.com/currencies
+			"'unit_price':10.0"+
+		"}]"+
+	"}";
+
+	JSONObject preference = mp.createPreference(preferenceData);
+
+	String initPoint = preference.getJSONObject("response").getString("init_point");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -109,7 +129,7 @@
             
             <tr>
             <td>
-            
+            <a href="<%= initPoint %>">Pay</a>
             </td>
             
             <td>

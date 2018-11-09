@@ -3,7 +3,6 @@
 	<name>APD_SERVER</name>
 	<comment></comment>
 	<projects>
-		<project>APD_REPO</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
