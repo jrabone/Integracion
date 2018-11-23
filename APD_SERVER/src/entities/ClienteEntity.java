@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="CLIENTE")
@@ -26,21 +28,27 @@ public class ClienteEntity {
 	@Column (name="apellido")
 	private String apellido;
 	
-	@OneToOne
+	@Column (name="telefono")
+	private String telefono;
+	
+	@Column (name="celular")
+	private String celular;
+	
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idDomicilioFacturacion")
 	DomicilioEntity domicilioDeFacturacion;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idDomicilioEntrega")
 	DomicilioEntity domicilioDeEntrega;
 	
-	@OneToMany
-	@JoinColumn(name="idVenta")
-	List<VentaEntity> ventas;
+	//@OneToMany
+	//@JoinColumn(name="idVenta")
+	//List<VentaEntity> ventas;
 	
 	public ClienteEntity() {};
 	
-	public ClienteEntity(String dni, String nombre, String apellido,
+	public ClienteEntity(String dni, String nombre, String apellido, String telefono, String celular,
 			DomicilioEntity domicilioDeFacturacion, DomicilioEntity domicilioDeEntrega, List<VentaEntity> ventas) {
 		super();
 		this.dni = dni;
@@ -48,7 +56,9 @@ public class ClienteEntity {
 		this.apellido = apellido;
 		this.domicilioDeFacturacion = domicilioDeFacturacion;
 		this.domicilioDeEntrega = domicilioDeEntrega;
-		this.ventas = ventas;
+		
+		this.telefono = telefono;
+		this.celular = celular;
 	}
 	
 	public Integer getIdCliente() {
@@ -99,12 +109,22 @@ public class ClienteEntity {
 		this.domicilioDeEntrega = domicilioDeEntrega;
 	}
 
-	public List<VentaEntity> getVentas() {
-		return ventas;
+
+	public String getTelefono() {
+		return telefono;
 	}
 
-	public void setVentas(List<VentaEntity> ventas) {
-		this.ventas = ventas;
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}	
+	
 	
 }

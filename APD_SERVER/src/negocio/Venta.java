@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public abstract class Venta {
 	
 	public void actualizarEstado(String estado) {
 		this.estado = estado;
+		this.update();
 	}
 	
 	public double getTotal() {
@@ -34,6 +36,23 @@ public abstract class Venta {
 		}
 		return total;
 		
+	}
+	
+	public void agregarItem(Articulo articulo, double cantidad) {
+		if (this.items == null) {
+			this.items = new ArrayList<ItemVenta>();
+		}
+		ItemVenta item = new ItemVenta(articulo, cantidad);
+		this.items.add(item);
+		this.save();
+	}
+
+	public List<ItemVenta> getItems() {
+		return items;
+	}
+
+	public void setItems(List<ItemVenta> items) {
+		this.items = items;
 	}
 
 	public int getIdVenta() {
@@ -83,5 +102,9 @@ public abstract class Venta {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
+	public abstract Integer save();
+	
+	public abstract void update();
 
 }

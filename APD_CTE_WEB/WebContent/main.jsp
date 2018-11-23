@@ -23,11 +23,13 @@
   </head>
 
   <body>
+  
+
 
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/APD_CTE_WEB/logochico.png" 
+        <a class="navbar-brand" href="#"><img src="http://localhost:8090/APD_CTE_WEB/logochico.png" 
      srcset = "/APD_CTE_WEB/logochico.png 2x, 
              /APD_CTE_WEB/logochico.png 768w, 
              /APD_CTE_WEB/logochico.png 768w 2x, 
@@ -37,7 +39,7 @@
          <% VendedorDTO vendedor= (VendedorDTO)session.getAttribute("vendedor");%>
          <% List<ArticuloDTO> carrito= (List<ArticuloDTO>)session.getAttribute("carrito");%>
          <% int cantidad = carrito.size();%>
-        <verysmall>Bienvenido, <%=vendedor.getNombre() %></verysmall>
+        <verysmall>Bienvenido, <%=vendedor.getNombre()%></verysmall>
       </h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -59,6 +61,17 @@
 
     <!-- Page Content -->
     <div class="container">
+    
+      <%if (request.getAttribute("mensaje") != null) {
+			%>
+			<div class="col-md-12">
+				<div class="alert alert-info">
+					<p><%=request.getAttribute("mensaje")%></p>
+				</div>
+			</div>
+			<%
+				}
+			%>
 
       <!-- Page Heading -->
       <h1 class="my-4">iaPOS
@@ -73,12 +86,16 @@
             <a href="#"><img class="card-img-top" src="<%=articulo.getFoto() %>" alt=""></a>
             <div class="card-body">
               <h4 class="card-title">
-                <a href="ServletModuloVentas?action=agregarArticuloCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>&descripcionArticulo=<%=articulo.getDescripcion()%>&precioArticulo=<%=String.valueOf(articulo.getPrecioUnitario())%>">Agregar</a>
+              <%=articulo.getDescripcion() %>
+              <% if (articulo.getStock() > 0) {%>
+                <a href="ServletModuloVentas?action=agregarArticuloCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>&descripcionArticulo=<%=articulo.getDescripcion()%>&precioArticulo=<%=String.valueOf(articulo.getPrecioUnitario())%>&stock=<%=String.valueOf(articulo.getStock())%>&foto=<%=articulo.getFoto()%>">Agregar</a>
+              <% }else{%>
+              	SIN STOCK
+              <% } %>
               </h4>
-              <p class="card-text">   <%=articulo.getDescripcion() %> 
-              	<h4 class="card-title">$<%=articulo.getPrecioUnitario() %></h4>
-              	<h4 class="card-title">Stock: <%=articulo.getStock() %> </h4> 
-              </p>         
+              <p class="card-text">Stock:  <%=articulo.getStock() %>  </p>
+              <p class="card-text"><b>$   <%=articulo.getPrecioUnitario() %>  </b></p>
+              
             </div>
           </div>
         </div>

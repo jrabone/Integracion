@@ -2,17 +2,21 @@ package negocio;
 
 import java.util.List;
 
+import dao.ClienteDAO;
+
 public class Cliente {
 
 	private int idCliente;
 	private String dni;
 	private String nombre;
 	private String apellido;
+	private String telefono;
+	private String celular;
 	private Domicilio domicilioDeFacturacion;
 	private Domicilio domicilioDeEntrega;
 	private List<Venta> ventas;
 	
-	public Cliente(int idCliente, String dni, String nombre, String apellido,
+	public Cliente(int idCliente, String dni, String nombre, String apellido, String telefono, String celular,
 			Domicilio domicilioDeFacturacion, Domicilio domicilioDeEntrega, 
 			List<Venta> ventas) {
 		this.idCliente = idCliente;
@@ -22,6 +26,8 @@ public class Cliente {
 		this.domicilioDeFacturacion = domicilioDeFacturacion;
 		this.domicilioDeEntrega = domicilioDeEntrega;
 		this.ventas = ventas;
+		this.telefono = telefono;
+		this.celular = celular;
 	}
 	
 	public int getIdCliente() {
@@ -65,6 +71,28 @@ public class Cliente {
 	}
 	public void setVentas(List<Venta> ventas) {
 		this.ventas = ventas;
+	}
+	
+	
+	
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public void save() {
+		ClienteDAO.getInstancia().save(this);
 	}
 	
 }

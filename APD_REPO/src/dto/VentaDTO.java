@@ -1,6 +1,7 @@
 package dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,10 @@ public class VentaDTO implements Serializable{
 	protected ClienteDTO cliente;
 	protected List<ItemVentaDTO> items;
 	
-	public VentaDTO() {}
+	public VentaDTO() {
+		this.items = new ArrayList<ItemVentaDTO>();
+		
+	}
 
 	public int getIdVenta() {
 		return idVenta;

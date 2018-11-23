@@ -1,5 +1,6 @@
 <%@ page import="dto.ArticuloDTO"%>
 <%@ page import="dto.VendedorDTO"%>
+<%@ page import="dto.ClienteDTO"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Iterator"%>
 
@@ -28,7 +29,7 @@
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="/APD_CTE_WEB/logochico.png" 
+        <a class="navbar-brand" href="ServletModuloVentas?action=listarArticulos"><img src="/APD_CTE_WEB/logochico.png" 
      srcset = "/APD_CTE_WEB/logochico.png 2x, 
              /APD_CTE_WEB/logochico.png 768w, 
              /APD_CTE_WEB/logochico.png 768w 2x, 
@@ -37,6 +38,7 @@
         <h1 class="my-41">
          <% VendedorDTO vendedor= (VendedorDTO)session.getAttribute("vendedor");%>
          <% List<ArticuloDTO> carrito= (List<ArticuloDTO>)session.getAttribute("carrito");%>
+         <% ClienteDTO cliente = (ClienteDTO)session.getAttribute("cliente");%>
          <% int cantidad = carrito.size();%>
         <verysmall>Bienvenido, <%=vendedor.getNombre() %></verysmall>
       </h1>
@@ -46,7 +48,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-              <a class="nav-link" href="ServletModuloVentas?action=verCarrito">Confirmar Carrito
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Confirmar Carrito
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -71,6 +73,94 @@
       </h1>
       <div class="row">
               <div class="card-body">
+          <% double total = 0;
+			  int cant = 0; if(cantidad > 0) { %>
+			  
+		 <h1 class="my-4">
+		    <small>Cliente</small>
+		  </h1>
+		  <%if (cliente != null){ %>
+			<table class="table table-bordered" cellspacing="0" witdh=50%>
+            <tr>
+            <td>
+            <b>Nombre y Apellido</b>
+            </td>
+            </tr>
+            
+            <tr>
+            <td>
+            <%=cliente.getNombre() + " " + cliente.getApellido() %>
+            </td>
+            </tr>
+            
+            <tr>
+            <td>
+            <b>DNI</b>
+            </td>
+            </tr>
+            
+            <tr>
+            <td>
+            <%=cliente.getDni() %>
+            </td>
+            </tr>
+
+
+            <tr>
+            <td>
+            <b>Domicilio Facturación</b>
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <%=cliente.getDomicilioDeFacturacion().getDomicilioCompleto() %>
+            </td>
+            </tr>
+        
+            
+             <tr>
+            <td>
+            <b>Domicilio de Entrega</b>
+            </td>
+            </tr>
+
+            <tr>
+            <td>
+            <%=cliente.getDomicilioDeEntrega().getDomicilioCompleto() %>
+            </td>
+            </tr>
+            
+             <tr>
+            <td>
+            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#asignarCliente">Cambiar cliente</a>
+            <a class="btn btn-primary" href="ServletModuloVentas?action=altaCliente">Nuevo cliente</a>
+            </td>
+            </tr>
+            
+            </table>
+		  <%}else{ %>
+		  	<table class="table table-bordered" cellspacing="0" witdh=50%>
+            <tr>
+            <td>
+            <b>Sin cliente asignado</b>
+            </td>
+            </tr>
+             <tr>
+            <td>
+            <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#asignarCliente">Asignar cliente</a>
+            <a class="btn btn-primary" href="ServletModuloVentas?action=altaCliente">Nuevo cliente</a>
+             </td>
+            </tr>
+            
+            </table>
+            
+		  <%} %>
+		  </div>
+		  <div class="card-body">	  
+		  <h1 class="my-4">
+		    <small>Detalle</small>
+		  </h1>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" cellspacing="0">
               <thead>
@@ -84,8 +174,7 @@
               <tbody>
               <%
             	  ArticuloDTO articulo = null;
-  				  double total = 0;
-  				  int cant = 0;
+  				  
 				if (carrito != null) {
 					for (Iterator<ArticuloDTO> i = carrito.iterator(); i.hasNext();) {
 						articulo = i.next();
@@ -100,14 +189,23 @@
                   <td><table class="table table-bordered">
 				  
 				  <th>
-              <a class="nav-link" href="ServletModuloVentas?action=eliminarDelCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>">Eliminar
-              </a>
+				  <a class="btn btn-primary" href="ServletModuloVentas?action=eliminarDelCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>">Eliminar</a>
             </th>
 				  </th></table></td>
               </tr> 
               <%}} %>
                             </tbody>
             </table>
+            <%}else{%>
+            	
+            	<table class="table table-bordered" cellspacing="0" witdh=50%>
+            <tr>
+            <td>
+            <b>Carrito vacío</b>
+            </td>
+			</tr>
+			</table>
+            <%}%>
           </div>
         </div>
       </div>
@@ -116,18 +214,100 @@
 	
 
       <!-- Page Heading -->
+      <%if (cantidad > 0){ %>
       <h4 class="my-42">Cantidad de Artículos:     
         <%=cant %>
       </h4>
       <h4 class="my-42">Importe total:     
         $<%=total %>
       </h4> 
+      <%} %>
        
       
 
 
     </div>
     <!-- /.container -->
+    
+    <!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Confirmación de compra</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <%if(carrito.size() == 0){%>
+          	<div class="modal-body">El carrito se encuentra vacio!</div>
+          	<div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          <%}else{
+        	  if (cliente == null){ %>
+        	  <div class="modal-body">No ingreso cliente!</div>
+        	  <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+        	  <%}else{ %>
+        	  
+          <div class="modal-body">Seleccione el medio de pago</div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+            <a class="btn btn-primary" href="ServletModuloVentas?action=ingresoMedioPago&medioPago=mercadopago">Mercado Pago</a>
+            <a class="btn btn-primary" href="ServletModuloVentas?action=procesarVenta&medioPago=efectivo">Efectivo</a>
+            <a class="btn btn-primary" href="ServletModuloVentas?action=ingresoMedioPago&medioPago=cheque">Cheque</a>
+            <a class="btn btn-primary" href="ServletModuloVentas?action=procesarVenta&medioPago=tarjeta">Tarjeta</a>
+          <%} %>
+          <%} %>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+        <div class="modal fade" id="asignarCliente" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Asignación de cliente</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+          
+                    <form action="/APD_CTE_WEB/servlets/ServletModuloVentas" method="post" id="ingresoCliente">
+            <table class="table table-bordered" cellspacing="0" witdh=50%>
+            
+            <tr>
+            <td>
+            DNI: 
+            </td>
+            <td>
+            <input class="form-control" id="dni" name="dni" type="text">
+            </td>
+
+            <tr>
+            <td>
+            
+            </td>
+            
+            <td>
+            <input type="hidden" name="action" value="ingresoCliente">
+            <input type="submit" class="btn btn-primary" align=center name="ingresoCliente" value="Confirmar">
+            </td>
+            </tr>
+            </table>
+            </form>
+            
+            </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="py-5 bg-dark">
@@ -140,6 +320,8 @@
     <!-- Bootstrap core JavaScript -->
     <script src="/APD_CTE_WEB/vendor/jquery/jquery.min.js"></script>
     <script src="/APD_CTE_WEB/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
 
   </body>
 

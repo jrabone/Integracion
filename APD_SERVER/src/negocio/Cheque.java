@@ -3,6 +3,8 @@ package negocio;
 import java.util.Date;
 import java.util.List;
 
+import dao.VentaDAO;
+
 public class Cheque extends Venta{
 	private String numeroCheque;
 	private String banco;
@@ -49,5 +51,13 @@ public class Cheque extends Venta{
 
 	public void setVencimiento(String vencimiento) {
 		this.vencimiento = vencimiento;
+	}
+	
+	public Integer save() {
+		return VentaDAO.getInstancia().save(this);
+	}
+	
+	public void update() {
+		VentaDAO.getInstancia().update(this);
 	}
 }

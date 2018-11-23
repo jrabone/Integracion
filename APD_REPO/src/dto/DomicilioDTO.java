@@ -86,4 +86,11 @@ public class DomicilioDTO implements Serializable{
 	public void setDpto(String dpto) {
 		this.dpto = dpto;
 	}
+	
+	public String getDomicilioCompleto() {
+		if (piso == null)
+		return (calle + " "  + numero + " " + localidad + " (" + codigoPostal + ")" + " " + provincia + ", " + pais);
+		else
+			return (calle + " "  + numero + " Piso " + piso + " Dpto " + dpto + " " + localidad + "(" + codigoPostal + ")" + " " + provincia + ", " + pais);
+	}
 }

@@ -62,4 +62,19 @@ public class ArticuloDAO {
 		articuloDTO.setStock(articulo.getStock());
 		return articuloDTO;
 	}
+	
+	public Articulo toNegocio(ArticuloDTO articulo) {
+		Articulo articuloNegocio = new Articulo(articulo.getIdArticulo(), articulo.getDescripcion(), articulo.getPrecioUnitario(), articulo.getFoto(), articulo.getStock());
+		return articuloNegocio;
+	}
+	
+	public ArticuloEntity toEntity(Articulo articulo) {
+		ArticuloEntity aux = new ArticuloEntity();
+		aux.setDescripcion(articulo.getDescripcion());
+		aux.setFoto(articulo.getFoto());
+		aux.setIdArticulo(articulo.getIdArticulo());
+		aux.setPrecioUnitario(articulo.getPrecioUnitario());
+		aux.setStock(articulo.getStock());
+		return aux;
+	}
 }

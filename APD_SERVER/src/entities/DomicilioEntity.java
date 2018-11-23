@@ -13,41 +13,49 @@ public class DomicilioEntity {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="idDomicilio")
-	private int idDomicilio;
+	private Integer idDomicilio;
 	@Column (name="pais")
 	private String pais;
 	@Column (name="provincia")
 	private String provincia;
-	@Column (name="partido")
-	private String partido;
+	@Column (name="localidad")
+	private String localidad;
 	@Column (name="codigoPostal")
 	private String codigoPostal;
 	@Column (name="calle")
 	private String calle;
-	@Column (name="altura")
-	private String altura;
 	@Column (name="piso")
 	private String piso;
 	@Column (name="numero")
 	private int numero;
+	@Column (name="dpto")
+	private String dpto;
 	
 	public DomicilioEntity() {	}
 	
-	public DomicilioEntity(String pais, String provincia, String partido, String codigoPostal, String calle, String altura, String piso, int numero) {
+	public DomicilioEntity(String pais, String provincia, String localidad, String codigoPostal, String calle, String piso, int numero, String dpto) {
 		this.pais = pais;
 		this.provincia = provincia;
-		this.partido = partido;
+		this.localidad = localidad;
 		this.codigoPostal = codigoPostal;
 		this.calle = calle;
-		this.altura = altura;
 		this.piso = piso;
 		this.numero = numero;
+		this.dpto = dpto;
 	}
 	
 	//public DomicilioDeFacturacion toNegocio(){
 		//return new DomicilioDeFacturacion(pais, provincia, partido, codigoPostal, calle, altura, piso, numero);
 	//}
 	
+	public String getDpto() {
+		return dpto;
+	}
+
+	public void setDpto(String dpto) {
+		this.dpto = dpto;
+	}
+
 	public String getPais() {
 		return pais;
 	}
@@ -60,12 +68,7 @@ public class DomicilioEntity {
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
-	public String getPartido() {
-		return partido;
-	}
-	public void setPartido(String partido) {
-		this.partido = partido;
-	}
+	
 	public String getCodigoPostal() {
 		return codigoPostal;
 	}
@@ -78,11 +81,8 @@ public class DomicilioEntity {
 	public void setCalle(String calle) {
 		this.calle = calle;
 	}
-	public String getAltura() {
-		return altura;
-	}
-	public void setAltura(String altura) {
-		this.altura = altura;
+	public void setNumero(int numero) {
+		this.numero = numero;
 	}
 	public String getPiso() {
 		return piso;
@@ -93,7 +93,24 @@ public class DomicilioEntity {
 	public int getNumero() {
 		return numero;
 	}
-	public void setNumero(int numero) {
+	public void getNumero(int numero) {
 		this.numero = numero;
 	}
+
+	public int getIdDomicilio() {
+		return idDomicilio;
+	}
+
+	public void setIdDomicilio(int idDomicilio) {
+		this.idDomicilio = idDomicilio;
+	}
+
+	public String getLocalidad() {
+		return localidad;
+	}
+
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
+	
 }

@@ -8,6 +8,8 @@ public class ClienteDTO implements Serializable{
 	private String dni;
 	private String nombre;
 	private String apellido;
+	private String telefono;
+	private String celular;
 	private DomicilioDTO domicilioDeFacturacion;
 	private DomicilioDTO domicilioDeEntrega;
 	private List<VentaDTO> ventas;
@@ -69,5 +71,23 @@ public class ClienteDTO implements Serializable{
 	public void setVentas(List<VentaDTO> ventas) {
 		this.ventas = ventas;
 	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+	
+	
 
 }

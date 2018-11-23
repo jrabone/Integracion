@@ -3,52 +3,39 @@ package negocio;
 import java.util.Date;
 import java.util.List;
 
+import dao.VentaDAO;
+
 public class TarjetaCredito extends Venta{
-	private String numero;
-	private String vencimiento;
-	private String titular;
-	private String dni;
+	private String codigoConfirmacionMP;
 	
 	public TarjetaCredito(int idVenta, Date fecha, String estado, String observaciones,
-			Boolean entregaInmediata, Cliente cliente, List<ItemVenta> items, String numero, String vencimiento,
-			String titular, String dni) {
+			Boolean entregaInmediata, Cliente cliente, List<ItemVenta> items, String codigoConfirmacionMP) {
 		super(idVenta, fecha, estado, observaciones, entregaInmediata, cliente, items);
-		this.numero = numero;
-		this.vencimiento = vencimiento;
-		this.titular = titular;
-		this.dni = dni;
+		this.codigoConfirmacionMP = codigoConfirmacionMP;
+	}
+	
+	public void actualizarEstado(String estado, String codigoConfirmacionMP) {
+		this.estado = estado;
+		this.codigoConfirmacionMP = codigoConfirmacionMP;
+		this.update();
+	}
+	
+	public String getCodigoConfirmacionMP() {
+		return codigoConfirmacionMP;
 	}
 
-	public String getNumero() {
-		return numero;
+
+	public void setCodigoConfirmacionMP(String codigoConfirmacionMP) {
+		this.codigoConfirmacionMP = codigoConfirmacionMP;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
 
-	public String getVencimiento() {
-		return vencimiento;
+	public Integer save() {
+		return VentaDAO.getInstancia().save(this);
 	}
-
-	public void setVencimiento(String vencimiento) {
-		this.vencimiento = vencimiento;
-	}
-
-	public String getTitular() {
-		return titular;
-	}
-
-	public void setTitular(String titular) {
-		this.titular = titular;
-	}
-
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
+	
+	public void update() {
+		VentaDAO.getInstancia().update(this);
 	}
 
 }

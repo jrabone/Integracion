@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
@@ -26,22 +27,22 @@ public abstract class VentaEntity implements Serializable {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="idVenta")
-	private Integer idVenta;
+	protected Integer idVenta;
 	@Column (name="fecha")
 	protected Date fecha;
 	@Column (name="estado")
-	private String estado;
+	protected String estado;
 	@Column (name="observaciones")
-	private String observaciones;
+	protected String observaciones;
 	@Column (name="entregaInmediata")
-	private Boolean entregaInmediata;
-	@ManyToOne
-	@JoinColumn (name="idCliente")
+	protected Boolean entregaInmediata;
+	@ManyToOne(cascade=CascadeType.ALL)
+	@JoinColumn(name="idCliente")
 	protected ClienteEntity idCliente;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name= "idVenta")
-	private List<ItemVentaEntity> items;  
+	protected List<ItemVentaEntity> items;  
 	
 	public VentaEntity() {}
 

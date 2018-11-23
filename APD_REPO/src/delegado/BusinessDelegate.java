@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import dto.ArticuloDTO;
+import dto.ClienteDTO;
 import dto.VendedorDTO;
+import dto.VentaDTO;
 import exception.ComunicationException;
 import interfaces.RemoteInterface;
 
@@ -40,6 +42,26 @@ public class BusinessDelegate {
 	
 	public List<ArticuloDTO> listarArticulos() throws RemoteException, ComunicationException{
 		return ir.listarArticulos();
+	}
+	
+	public ClienteDTO buscarClienteByDni(String dni) throws RemoteException, ComunicationException {
+		return ir.buscarClienteByDni(dni);
+	}
+	
+	public void altaCliente(ClienteDTO cliente) throws RemoteException{
+		ir.altaCliente(cliente);
+	}
+	
+	public String crearboton(List<ArticuloDTO> articulos) throws RemoteException{
+		return ir.crearboton(articulos);
+	}
+	
+	public int procesarVenta(VentaDTO venta) throws RemoteException{
+		return ir.procesarVenta(venta);
+	}
+	
+	public VentaDTO buscarVenta(int idVenta) throws RemoteException{
+		return ir.buscarVenta(idVenta);
 	}
 
 	
