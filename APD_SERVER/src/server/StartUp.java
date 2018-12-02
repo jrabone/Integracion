@@ -39,7 +39,7 @@ public class StartUp {
 		c= ModuloVentas.getInstance();
 		
 		System.out.println("Alta de Articulos.");	
-		altaArticulos();		
+		//altaArticulos();		
 		System.out.println("PERSISTIDOS OK");
 		//updateStock();
 		//crearboton();

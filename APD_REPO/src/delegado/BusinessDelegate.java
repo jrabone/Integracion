@@ -56,6 +56,10 @@ public class BusinessDelegate {
 		return ir.crearboton(articulos);
 	}
 	
+	public String enviarADeposito(List<ArticuloDTO> articulos) throws RemoteException{
+		return ir.enviarADeposito(articulos);
+	}
+	
 	public int procesarVenta(VentaDTO venta) throws RemoteException{
 		return ir.procesarVenta(venta);
 	}

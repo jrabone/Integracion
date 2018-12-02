@@ -75,7 +75,7 @@
               <h4 class="card-title">
               <%=articulo.getDescripcion() %>
               <% if (articulo.getStock() > 0) {%>
-                <a href="ServletModuloVentas?action=agregarArticuloCarrito&idArticulo=<%=articulo.getIdArticulo().toString()%>&descripcionArticulo=<%=articulo.getDescripcion()%>&precioArticulo=<%=String.valueOf(articulo.getPrecioUnitario())%>">Agregar</a>
+                <a href="ServletModuloVentas?action=agregarArticuloCarrito&codigoBarras=<%=articulo.getCodigoBarras()%>&idArticulo=<%=articulo.getIdArticulo().toString()%>&descripcionArticulo=<%=articulo.getDescripcion()%>&precioArticulo=<%=String.valueOf(articulo.getPrecioUnitario())%>">Agregar</a>
               <% }else{%>
               	SIN STOCK
               <% } %>

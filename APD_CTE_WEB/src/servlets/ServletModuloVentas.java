@@ -57,43 +57,11 @@ public class ServletModuloVentas extends HttpServlet{
 					if(usuario != null) {
 						request.setAttribute("error", "Login OK!!!");
 						
-						List<ArticuloDTO> articulos =  new ArrayList<ArticuloDTO>();//BusinessDelegate.getInstancia().listarArticulos();//new ArrayList<ArticuloDTO>();
-						//request.setAttribute("articulos", articulos);
+						List<ArticuloDTO> articulos = BusinessDelegate.getInstancia().listarArticulos(); //new ArrayList<ArticuloDTO>(); //new ArrayList<ArticuloDTO>();
 						List<ArticuloDTO> carrito = new ArrayList<ArticuloDTO>();
-						//session.setAttribute("articulos",  articulos);
+
 						session.setAttribute("carrito", carrito);
 						session.setAttribute("vendedor", usuario);
-						
-						String urlString = "http://192.168.137.1:8080/productos";
-						
-						
-						StringBuilder result = new StringBuilder();
-					      URL url = new URL(urlString);
-					      HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-					      conn.setRequestMethod("GET");
-					      BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-					      String line;
-					      while ((line = rd.readLine()) != null) {
-					         result.append(line);
-					      }
-					      rd.close();
-					      System.out.println(result);
-					      
-					      //JSONObject obj = new JSONObject(result.toString());
-
-					      JSONArray items = new JSONArray(result.toString());
-					      //JSONArray items = obj.getJSONArray("items");
-
-					      for (int i = 0; i < items.length(); i++)
-					      {
-					    	  ArticuloDTO art = new ArticuloDTO();
-					    	  art.setDescripcion(items.getJSONObject(i).getString("descripcion"));
-					    	  art.setFoto(items.getJSONObject(i).getString("fotoUrl"));
-					    	  art.setIdArticulo(items.getJSONObject(i).getInt("idProducto"));
-					    	  art.setPrecioUnitario(items.getJSONObject(i).getDouble("precioVenta"));
-					    	  art.setStock(items.getJSONObject(i).getInt("stockActual"));
-					          articulos.add(art);
-					      }
 					    request.setAttribute("articulos", articulos);
 					    session.setAttribute("articulos",  articulos);
 					    
@@ -131,6 +99,7 @@ public class ServletModuloVentas extends HttpServlet{
 						articulo.setPrecioUnitario(Double.parseDouble(request.getParameter("precioArticulo")));
 						articulo.setFoto(request.getParameter("foto"));
 						articulo.setStock(Integer.parseInt(request.getParameter("stock")));
+						articulo.setCodigoBarras(request.getParameter("codigoBarras"));
 						carrito.add(articulo);
 						session.setAttribute("carrito", carrito);
 						
@@ -313,6 +282,7 @@ public class ServletModuloVentas extends HttpServlet{
 															}
 															else if(medioPago.equals("mercadopago")) {
 																String urlBoton = BusinessDelegate.getInstancia().crearboton((List<ArticuloDTO>)session.getAttribute("carrito"));
+																BusinessDelegate.getInstancia().enviarADeposito((List<ArticuloDTO>)session.getAttribute("carrito"));
 																request.setAttribute("mercadoPagoUrl", urlBoton);
 																session.setAttribute("mercadoPagoUrl", urlBoton);
 																dispatcher=request.getRequestDispatcher("/mercadopago.jsp");

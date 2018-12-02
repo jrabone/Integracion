@@ -26,4 +26,6 @@ public interface RemoteInterface extends Remote{
 	public VentaDTO buscarVenta(int idVenta) throws RemoteException;
 	
 	public String crearboton(List<ArticuloDTO> articulos) throws RemoteException;
+	
+	public String enviarADeposito(List<ArticuloDTO> articulos) throws RemoteException;
 }

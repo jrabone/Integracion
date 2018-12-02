@@ -41,5 +41,6 @@
 	<classpathentry kind="lib" path="C:/Users/javier.adrian.rabone/eclipse-workspace/my-app/POSTA/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="C:/Users/javier.adrian.rabone/eclipse-workspace/my-app/POSTA/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/javier.adrian.rabone/eclipse-workspace/my-app/POSTA/stax-api-1.0-2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/javier.adrian.rabone/eclipse-workspace/my-app/POSTA/json-20180813.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
